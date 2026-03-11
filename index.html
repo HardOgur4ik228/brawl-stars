@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arena Stars</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="app-bg"></div>
+
+  <div id="menuScreen" class="screen">
+    <header class="topbar glass">
+      <div class="brand-wrap">
+        <div class="brand-logo">★</div>
+        <div>
+          <div class="brand-title">ARENA STARS</div>
+          <div class="brand-sub">online shooter prototype</div>
+        </div>
+      </div>
+
+      <div class="wallet">
+        <div class="currency coin">🪙 <span id="coinsValue">1500</span></div>
+        <div class="currency gem">💎 <span id="gemsValue">90</span></div>
+      </div>
+    </header>
+
+    <main class="menu-grid">
+      <section class="left-col">
+        <div class="panel hero-banner">
+          <div>
+            <div class="tiny-label">selected fighter</div>
+            <h1 id="selectedHeroTitle">Ranger</h1>
+            <p id="selectedHeroDesc">
+              Дальний бой, стабильный урон и хорошая дистанция.
+            </p>
+            <div class="hero-stats" id="heroStats"></div>
+          </div>
+          <div class="hero-avatar" id="heroAvatar"></div>
+        </div>
+
+        <div class="panel">
+          <div class="section-head">
+            <h2>Выбор персонажа</h2>
+            <span class="section-note">3 стартовых бойца</span>
+          </div>
+          <div id="heroCards" class="hero-cards"></div>
+        </div>
+
+        <div class="panel play-panel">
+          <div>
+            <div class="tiny-label">status</div>
+            <div id="netStatus" class="net-status offline">Не подключено</div>
+          </div>
+
+          <div class="play-actions">
+            <button id="playBtn" class="btn btn-primary">Играть онлайн</button>
+            <button id="openShopBtn" class="btn btn-secondary">Магазин</button>
+          </div>
+        </div>
+      </section>
+
+      <aside class="right-col">
+        <div class="panel">
+          <div class="section-head">
+            <h2>Быстрый магазин</h2>
+            <span class="section-note">локальные скины</span>
+          </div>
+          <div id="shopItems" class="shop-items"></div>
+        </div>
+
+        <div class="panel">
+          <div class="section-head">
+            <h2>Подсказки</h2>
+          </div>
+          <div class="tips">
+            <div class="tip">WASD — движение</div>
+            <div class="tip">ЛКМ — стрельба</div>
+            <div class="tip">SPACE — супер</div>
+            <div class="tip">Мультиплеер идёт через отдельный сервер Socket.IO</div>
+          </div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <div id="shopModal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2>Магазин</h2>
+        <button id="closeShopBtn" class="btn btn-secondary">Закрыть</button>
+      </div>
+      <div id="shopModalItems" class="shop-items big"></div>
+    </div>
+  </div>
+
+  <div id="gameScreen" class="screen hidden">
+    <header class="game-topbar glass">
+      <div class="score-box blue-box">
+        BLUE: <span id="blueScore">0</span>
+      </div>
+
+      <div class="timer-box">
+        TIME: <span id="timeValue">180</span>
+      </div>
+
+      <div class="score-box red-box">
+        RED: <span id="redScore">0</span>
+      </div>
+    </header>
+
+    <div class="game-wrap">
+      <canvas id="gameCanvas" width="1280" height="720"></canvas>
+
+      <div class="hud glass">
+        <div class="hud-row">
+          <div>
+            <div class="tiny-label">hero</div>
+            <div id="hudHeroName" class="hud-main">Ranger</div>
+          </div>
+          <button id="leaveBtn" class="btn btn-secondary">В меню</button>
+        </div>
+
+        <div class="hud-row">
+          <div class="bar-label">HP</div>
+          <div class="bar">
+            <div id="hpFill" class="bar-fill hp-fill"></div>
+          </div>
+          <div id="hpText" class="bar-text">1800 / 1800</div>
+        </div>
+
+        <div class="hud-row">
+          <div class="bar-label">SUPER</div>
+          <div class="bar">
+            <div id="superFill" class="bar-fill super-fill"></div>
+          </div>
+          <div id="superText" class="bar-text">0%</div>
+        </div>
+
+        <div class="controls-line">WASD • ЛКМ • SPACE</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
